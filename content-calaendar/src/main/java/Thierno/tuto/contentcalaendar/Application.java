@@ -18,6 +18,7 @@ public class Application {
 		//restTemplate.getForObject("http://localhost:8080", String.class);
 		Message message = (Message) context.getBean("message");
 		System.out.println(message.getMessage());
+		
 	}
 
 }
