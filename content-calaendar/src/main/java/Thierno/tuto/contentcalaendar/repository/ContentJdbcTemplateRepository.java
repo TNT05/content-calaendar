@@ -44,4 +44,12 @@ public class ContentJdbcTemplateRepository {
     return jdbcTemplate.query(query, ContentJdbcTemplateRepository::mapRow).stream().findFirst();
   }
 
+  public void addContent(Content content){
+    String query = "INSERT INTO Content(title,desc,status,content_type,date_created, date_updated, url) " +
+    "VALUES ('" + content.title() + "','" + content.desc() + "','" + content.status() + "','" + content.contentType() + "','" + LocalDateTime.now() + "'," + content.dateUpdated() + ",'" + content.url() + "')";
+    
+    jdbcTemplate.update(query);
+
+  }
+
 }

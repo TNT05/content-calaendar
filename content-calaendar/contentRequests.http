@@ -38,9 +38,25 @@ content-type: application/json
 DELETE http://localhost:8080/api/content/1 HTTP/1.1
 
 
-### Find All Content In Local h2 Locally Connected DB
+### Find All Content In Local h2 Locally Connected DB Using JDBC
 GET http://localhost:8080/api/content/jdbc HTTP/1.1
 
 
-### Find A Specific Content In Local h2 Locally Connected DB
+### Find A Specific Content In Local h2 Locally Connected DB Using JDBC
 GET http://localhost:8080/api/content/jdbc/2 HTTP/1.1
+
+
+### Add New Content In Local H2 Locally Using JDBC
+POST http://localhost:8080/api/content/jdbc HTTP/1.1
+content-type: application/json
+
+{
+  "title": "My Firstee Updated Blog Post",
+  "desc": "My firstee updated blog post",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": null,
+  "dateUpdated": null,
+  "url": null
+}
+
