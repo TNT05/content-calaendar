@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -35,7 +36,12 @@ public class ContentJdbcTemplateRepository {
 
   public List<Content> findAll(){
     String query = "SELECT * FROM Content";
-    return = jdbcTemplate.query(query, ContentJdbcTemplateRepository::mapRow);
+    return jdbcTemplate.query(query, ContentJdbcTemplateRepository::mapRow);
+  }
+
+  public Optional<Content> findById(Integer id){
+    String query = "SELECT * FROM Content C WHERE C.id=" + id;
+    return jdbcTemplate.query(query, ContentJdbcTemplateRepository::mapRow).stream().findFirst();
   }
 
 }

@@ -1,4 +1,4 @@
-### Find All Content
+### Find All Content Local hardcoded Variable DB
 GET http://localhost:8080/api/content HTTP/1.1
 
 ### Find Content By Id
@@ -38,3 +38,9 @@ content-type: application/json
 DELETE http://localhost:8080/api/content/1 HTTP/1.1
 
 
+### Find All Content In Local h2 Locally Connected DB
+GET http://localhost:8080/api/content/jdbc HTTP/1.1
+
+
+### Find A Specific Content In Local h2 Locally Connected DB
+GET http://localhost:8080/api/content/jdbc/2 HTTP/1.1
