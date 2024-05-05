@@ -21,7 +21,7 @@ public class ContentJdbcController {
     this.repository = repository;
   }
 
-  @GetMapping
+  @GetMapping("")
   public List<Content> findAll(){
     return repository.findAll();
   }
