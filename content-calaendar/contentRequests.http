@@ -51,8 +51,8 @@ POST http://localhost:8080/api/content/jdbc HTTP/1.1
 content-type: application/json
 
 {
-  "title": "My Firstee Updated Blog Post",
-  "desc": "My firstee updated blog post",
+  "title": "My Firstee added Blog Post",
+  "desc": "My firstee added blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateCreated": null,
@@ -60,3 +60,21 @@ content-type: application/json
   "url": null
 }
 
+
+### Delete Existing Content In Local H2 Using JDBC
+DELETE http://localhost:8080/api/content/jdbc/1 HTTP/1.1
+
+
+### Add New Content In Local H2 Locally Using JDBC
+PUT http://localhost:8080/api/content/jdbc/update HTTP/1.1
+content-type: application/json
+
+{
+  "id": 2,
+  "title": "My Firstee Updateded Blog Post",
+  "desc": "My firstee updateded blog post",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateUpdated": null,
+  "url": null
+}
