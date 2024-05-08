@@ -54,6 +54,7 @@ public class ContentJdbcTemplateRepository {
 
   public void deleteContent(Integer id){
     String query = "DELETE FROM Content WHERE id="+id;
+    
     jdbcTemplate.update(query);
   }
 
@@ -61,7 +62,7 @@ public class ContentJdbcTemplateRepository {
     String query =  "UPDATE Content " +
     "SET title='" + content.title() + "', desc='" + content.desc() + "', status='" + content.status() + "', content_type='" + content.contentType() + "', date_updated='" + LocalDateTime.now() + "', url='" + content.url() + "' " +
     "WHERE id=" + content.id();
-    
+
     jdbcTemplate.update(query);
   }
     
