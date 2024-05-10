@@ -41,6 +41,7 @@ public class ContentJdbcTemplateRepository {
 
   public Optional<Content> findById(Integer id){
     String query = "SELECT * FROM Content C WHERE C.id=" + id;
+    
     return jdbcTemplate.query(query, ContentJdbcTemplateRepository::mapRow).stream().findFirst();
   }
 
@@ -54,7 +55,7 @@ public class ContentJdbcTemplateRepository {
 
   public void deleteContent(Integer id){
     String query = "DELETE FROM Content WHERE id="+id;
-    
+
     jdbcTemplate.update(query);
   }
 
