@@ -32,6 +32,7 @@ public class ContentJdbcTemplateRepository {
                        rs.getObject("date_updated", LocalDateTime.class),
                        rs.getString("url")
     );
+    
   }
 
   public List<Content> findAll(){
