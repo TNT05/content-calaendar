@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import Thierno.tuto.contentcalaendar.model.Content;
-import Thierno.tuto.contentcalaendar.repository.ContentCollectionRepository;
+import Thierno.tuto.contentcalaendar.model.content.Content;
+import Thierno.tuto.contentcalaendar.repository.content.ContentCollectionRepository;
 import jakarta.validation.Valid;
 
 @RestController

@@ -1,4 +1,4 @@
-package Thierno.tuto.contentcalaendar.repository;
+package Thierno.tuto.contentcalaendar.repository.content;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +9,9 @@ import java.util.Optional;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import Thierno.tuto.contentcalaendar.model.Content;
-import Thierno.tuto.contentcalaendar.model.Status;
-import Thierno.tuto.contentcalaendar.model.Type;
+import Thierno.tuto.contentcalaendar.model.content.ContentStatus;
+import Thierno.tuto.contentcalaendar.model.content.Content;
+import Thierno.tuto.contentcalaendar.model.content.ContentType;
 
 @Repository
 public class ContentJdbcTemplateRepository {
@@ -26,13 +26,13 @@ public class ContentJdbcTemplateRepository {
     return new Content(rs.getInt("id"),
                        rs.getString("title"),
                        rs.getString("desc"),
-                       Status.valueOf(rs.getString("status")),
-                       Type.valueOf(rs.getString("content_type")),
+                       ContentStatus.valueOf(rs.getString("status")),
+                       ContentType.valueOf(rs.getString("content_type")),
                        rs.getObject("date_created", LocalDateTime.class),
                        rs.getObject("date_updated", LocalDateTime.class),
                        rs.getString("url")
     );
-    
+
   }
 
   public List<Content> findAll(){

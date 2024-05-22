@@ -1,4 +1,4 @@
-package Thierno.tuto.contentcalaendar.repository;
+package Thierno.tuto.contentcalaendar.repository.content;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import Thierno.tuto.contentcalaendar.model.Content;
-import Thierno.tuto.contentcalaendar.model.Status;
-import Thierno.tuto.contentcalaendar.model.Type;
+import Thierno.tuto.contentcalaendar.model.content.Content;
+import Thierno.tuto.contentcalaendar.model.content.ContentType;
+import Thierno.tuto.contentcalaendar.model.content.ContentStatus;
 import jakarta.annotation.PostConstruct;
 
 @Repository
@@ -49,8 +49,8 @@ public class ContentCollectionRepository {
     Content c1 = new Content(1,
            "My First Blog Post",
             "My first blog post",
-                  Status.IDEA,
-                  Type.ARTICLE,
+            ContentStatus.IDEA,
+                  ContentType.ARTICLE,
                   LocalDateTime.now(),
       null,
               "");
@@ -60,8 +60,8 @@ public class ContentCollectionRepository {
     Content c2 = new Content(2,
     "My Second Blog Post",
      "My second blog post",
-           Status.IDEA,
-           Type.ARTICLE,
+     ContentStatus.IDEA,
+           ContentType.ARTICLE,
            LocalDateTime.now(),
   null,
        "");
