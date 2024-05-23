@@ -1,0 +1,16 @@
+### Find all courses
+GET http://localhost:8080/api/course/jdbc HTTP/1.1
+
+### Find a specific course by id
+GET http://localhost:8080/api/course/jdbc/1
+
+### Create a new Course
+POST http://localhost:8080/api/course/jdbc
+Content-Type: application/json
+
+{
+  "startTime": "13:30:00",
+  "endTime": "15:00:00",
+  "maximumCapacity": 10,
+  "status": "UNAVAILABLE"
+}

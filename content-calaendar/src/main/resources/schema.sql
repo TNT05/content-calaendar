@@ -18,10 +18,12 @@ VALUES ('My Second Spring Data Blog Post','A post about spring data using JDBC',
 
 CREATE TABLE IF NOT EXISTS Course (
   course_id INTEGER AUTO_INCREMENT,
-  List<Integer> studentsId,
-  Integer teacherId,
-  LocalTime startTime,
-  LocalTime endTime,
-  Integer maximumCapacity,
-  CourseStatus status 
-)
+  maximum_capacity INTEGER,
+  course_status VARCHAR(20) NOT NULL,
+  start_time TIME,
+  end_time TIME,
+  PRIMARY KEY (course_id)
+);
+
+INSERT INTO Course(maximum_capacity, course_status, start_time, end_time)
+VALUES (25, 'AVAILABLE', '08:30:00', '10:00:00');

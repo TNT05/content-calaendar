@@ -1,10 +1,8 @@
-package Thierno.tuto.contentcalaendar.controller;
+package Thierno.tuto.contentcalaendar.controller.content;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import Thierno.tuto.contentcalaendar.model.content.Content;
-import Thierno.tuto.contentcalaendar.repository.content.ContentCollectionRepository;
+import Thierno.tuto.contentcalaendar.repository.content.ContentJdbcTemplateRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/content")
 @CrossOrigin
-public class ContentController {
+@RequestMapping("/api/content/jdbc")
+public class ContentJdbcController {
 
-  private final ContentCollectionRepository repository;
+  private final ContentJdbcTemplateRepository repository;
 
-  public ContentController(ContentCollectionRepository repository){
+  public ContentJdbcController(ContentJdbcTemplateRepository repository){
     this.repository = repository;
   }
 
@@ -38,33 +36,27 @@ public class ContentController {
   }
 
   @GetMapping("/{id}")
-  public Content findById(@PathVariable Integer id){
-    return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found !")); 
-  }
+    public Content findById(@PathVariable Integer id){
+      return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Content Not Found !"));
+    }
 
-  @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
+  @ResponseStatus(HttpStatus.CREATED)
   public void addContent(@Valid @RequestBody Content content){
     repository.addContent(content);
   }
 
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  @PutMapping("{id}")
-  public void updateContent(@RequestBody Content content, @PathVariable Integer id){
-    if(!repository.existById(id)){
-      // learn how to create custom exceptions
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found !");
-    }
-    repository.addContent(content);
-  }
-
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @DeleteMapping("{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteContent(@PathVariable Integer id){
-    if(!repository.existById(id)){
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found !");
-    }
     repository.deleteContent(id);
   }
+
+  @PutMapping("/update")
+  @ResponseStatus(HttpStatus.ACCEPTED)
+  public void updateContent(@RequestBody Content content){
+    repository.updateContent(content);
+  }
+
 
 }
