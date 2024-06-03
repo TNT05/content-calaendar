@@ -11,6 +11,6 @@ Content-Type: application/json
 {
   "startTime": "13:30:00",
   "endTime": "15:00:00",
-  "maximumCapacity": 10,
+  "maximumCapacity": 10, 
   "status": "UNAVAILABLE"
 }

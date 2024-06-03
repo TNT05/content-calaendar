@@ -27,3 +27,24 @@ CREATE TABLE IF NOT EXISTS Course (
 
 INSERT INTO Course(maximum_capacity, course_status, start_time, end_time)
 VALUES (25, 'AVAILABLE', '08:30:00', '10:00:00');
+
+CREATE TABLE IF NOT EXISTS Teacher (
+  teacher_id INTEGER AUTO_INCREMENT,
+  teacher_name VARCHAR(20),
+  PRIMARY KEY (teacher_id)
+);
+
+INSERT INTO Teacher(teacher_name)
+VALUES ('Amadou Oury Barry');
+
+CREATE TABLE IF NOT EXISTS Teaches (
+  teacher_id INTEGER,
+  course_id INTEGER,
+  PRIMARY KEY (teacher_id, course_id),
+  FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id),
+  FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+
+
+INSERT INTO Teaches(teacher_id, course_id)
+VALUES (1,1);

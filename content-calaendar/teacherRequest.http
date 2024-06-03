@@ -1,0 +1,2 @@
+### Find all teachers
+GET http://localhost:8080/api/teacher/jdbc  

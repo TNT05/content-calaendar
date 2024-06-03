@@ -1,0 +1,11 @@
+### Find all class taught by a teacher
+GET http://localhost:8080/api/Teaches/jdbc/1
+
+### Add a Course to teach to a Teacher
+POST http://localhost:8080/api/Teaches/jdbc/addTeaching
+Content-Type: application/json
+
+{
+  "teacherId": 1,
+  "courseId": 4
+}
