@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Content (
   id INTEGER AUTO_INCREMENT,
   title varchar(255) NOT NULL,
-  desc text,
+  description text,
   status VARCHAR(20) NOT NULL,
   content_type VARCHAR(50) NOT NULL,
   date_created TIMESTAMP NOT NULL,
@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS Content (
   primary key (id)
 );
 
-INSERT INTO Content(title,desc,status,content_type,date_created)
+INSERT INTO Content(title,description,status,content_type,date_created)
 VALUES ('My Spring Data Blog Post','A post about spring data','IDEA','ARTICLE', CURRENT_TIMESTAMP());
 
-INSERT INTO Content(title,desc,status,content_type,date_created)
+INSERT INTO Content(title,description,status,content_type,date_created)
 VALUES ('My Second Spring Data Blog Post','A post about spring data using JDBC','COMPLETED','VIDEO', CURRENT_TIMESTAMP());
 
 CREATE TABLE IF NOT EXISTS Course (

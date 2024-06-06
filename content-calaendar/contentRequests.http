@@ -11,7 +11,7 @@ content-type: application/json
 {
   "id": 5,
   "title": "",
-  "desc": "My first blog post",
+  "description": "My first blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateCreated": "2024-04-29T16:10:57.1576915",
@@ -26,7 +26,7 @@ content-type: application/json
 {
   "id": 1,
   "title": "My Firstee Updated Blog Post",
-  "desc": "My firstee updated blog post",
+  "description": "My firstee updated blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateCreated": "2024-04-29T16:10:57.1576915",
@@ -52,7 +52,7 @@ content-type: application/json
 
 {
   "title": "My Firstee added Blog Post",
-  "desc": "My firstee added blog post",
+  "description": "My firstee added blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateCreated": null,
@@ -72,9 +72,47 @@ content-type: application/json
 {
   "id": 2,
   "title": "My Firstee Updateded Blog Post",
-  "desc": "My firstee updateded blog post",
+  "description": "My firstee updateded blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateUpdated": null,
   "url": null
 }
+
+### Find All Content in DB using Spring Data
+GET http://localhost:8080/api/content/springData HTTP/1.1
+
+### Find Content By Id in DB using Spring Data
+GET http://localhost:8080/api/content/springData/2 HTTP/1.1
+
+### Add New Content in DB using Spring Data
+POST http://localhost:8080/api/content/springData HTTP/1.1
+content-type: application/json
+
+{
+  "title": "testo",
+  "description": "My first blog post",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2024-04-29T16:10:57.1576915",
+  "dateUpdated": null,
+  "url": ""
+}
+
+### Updating Existing Content in DB using Spring Data
+PUT http://localhost:8080/api/content/springData/1 HTTP/1.1
+content-type: application/json
+
+{
+  "id": 1,
+  "title": "My Firstee Updated Blog Post",
+  "description": "My firstee updated blog post",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2024-04-29T16:10:57.1576915",
+  "dateUpdated": null,
+  "url": ""
+}
+
+### Delete Existing Content in DB using Spring Data
+DELETE http://localhost:8080/api/content/springData/2 HTTP/1.1

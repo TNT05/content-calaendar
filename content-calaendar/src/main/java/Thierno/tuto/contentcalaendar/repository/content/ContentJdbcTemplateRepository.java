@@ -25,7 +25,7 @@ public class ContentJdbcTemplateRepository {
   private static Content mapRow(ResultSet rs, int rowNum) throws SQLException {
     return new Content(rs.getInt("id"),
                        rs.getString("title"),
-                       rs.getString("desc"),
+                       rs.getString("description"),
                        ContentStatus.valueOf(rs.getString("status")),
                        ContentType.valueOf(rs.getString("content_type")),
                        rs.getObject("date_created", LocalDateTime.class),
@@ -47,8 +47,8 @@ public class ContentJdbcTemplateRepository {
   }
 
   public void addContent(Content content){
-    String query = "INSERT INTO Content(title,desc,status,content_type,date_created, date_updated, url) " +
-    "VALUES ('" + content.title() + "','" + content.desc() + "','" + content.status() + "','" + content.contentType() + "','" + LocalDateTime.now() + "'," + content.dateUpdated() + ",'" + content.url() + "')";
+    String query = "INSERT INTO Content(title,description,status,content_type,date_created, date_updated, url) " +
+    "VALUES ('" + content.title() + "','" + content.description() + "','" + content.status() + "','" + content.contentType() + "','" + LocalDateTime.now() + "'," + content.dateUpdated() + ",'" + content.url() + "')";
     
     jdbcTemplate.update(query);
   }
@@ -61,7 +61,7 @@ public class ContentJdbcTemplateRepository {
 
   public void updateContent(Content content){
     String query =  "UPDATE Content " +
-    "SET title='" + content.title() + "', desc='" + content.desc() + "', status='" + content.status() + "', content_type='" + content.contentType() + "', date_updated='" + LocalDateTime.now() + "', url='" + content.url() + "' " +
+    "SET title='" + content.title() + "', description='" + content.description() + "', status='" + content.status() + "', content_type='" + content.contentType() + "', date_updated='" + LocalDateTime.now() + "', url='" + content.url() + "' " +
     "WHERE id=" + content.id();
 
     jdbcTemplate.update(query);

@@ -8,7 +8,9 @@ import org.springframework.data.relational.core.mapping.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
-public record Content(
+@Table("CONTENT")
+public record ContentSpringData(
+  @Id
   Integer id,
   @NotBlank String title,
   String description,
