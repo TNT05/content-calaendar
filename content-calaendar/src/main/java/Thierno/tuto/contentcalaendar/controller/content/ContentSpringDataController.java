@@ -68,4 +68,9 @@ public class ContentSpringDataController {
     repository.deleteById(id);
   }
 
+  @GetMapping("/filter/{keyword}")
+  public List<ContentSpringData> findByTitle(@PathVariable String keyword){
+    return repository.findAllByTitleContains(keyword);
+  }
+
 }
