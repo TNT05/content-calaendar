@@ -10,7 +10,10 @@ Content-Type: application/json
 
 {
   "startTime": "13:30:00",
-  "endTime": "15:00:00",
-  "maximumCapacity": 10, 
-  "status": "UNAVAILABLE"
+  "endTime": "18:00:00",
+  "maximumCapacity": 80, 
+  "status": "AVAILABLE"
 }
+
+### Find all course by status in decreasing order
+GET http://localhost:8080/api/course/jdbc/findAllCourseByStatusByDecreasingId/AVAILABLE

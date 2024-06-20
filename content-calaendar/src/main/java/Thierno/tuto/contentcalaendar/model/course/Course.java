@@ -7,8 +7,6 @@ import java.util.List;
 
 public record Course(
   Integer courseId,
-  //List<Integer> studentsRegistered,
-  //Integer teacherId,
   LocalTime startTime,
   LocalTime endTime,
   Integer maximumCapacity,

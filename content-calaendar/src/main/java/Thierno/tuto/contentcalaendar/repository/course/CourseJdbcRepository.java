@@ -1,5 +1,6 @@
 package Thierno.tuto.contentcalaendar.repository.course;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
@@ -9,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import Thierno.tuto.contentcalaendar.model.course.Course;
@@ -60,4 +63,15 @@ public class CourseJdbcRepository {
     jdbcTemplate.update(query);
   }
 
+  public List<Course> findAllCourseByStatusByDecreasingId(String status){
+    String query = "SELECT * FROM Course WHERE course_status = ?";
+    PreparedStatementSetter pss = new PreparedStatementSetter() {
+      public void setValues(PreparedStatement ps) throws SQLException{
+        // this is where we set the values of the ? of the prepared statement
+        ps.setString(1, status);
+      }
+    };
+
+    return jdbcTemplate.query(query, pss, CourseJdbcRepository::mapRow);
+  }
 }

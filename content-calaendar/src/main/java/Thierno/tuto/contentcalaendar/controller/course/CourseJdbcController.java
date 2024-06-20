@@ -1,5 +1,6 @@
 package Thierno.tuto.contentcalaendar.controller.course;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,8 @@ import org.springframework.web.server.ResponseStatusException;
 import Thierno.tuto.contentcalaendar.model.course.Course;
 import Thierno.tuto.contentcalaendar.repository.course.CourseJdbcRepository;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin
@@ -45,5 +48,27 @@ public class CourseJdbcController {
   public void addContent(@Valid @RequestBody Course newCourse){
     courseJdbcRepository.addCourse(newCourse);
   }
+
+  @GetMapping("/findAllCourseByStatusByDecreasingId/{courseStatus}")
+  public List<Course> findAllCourseByStatusByDecreasingId(@PathVariable String courseStatus) {
+      
+    List<Course> matchCourses = courseJdbcRepository.findAllCourseByStatusByDecreasingId(courseStatus);
+
+      Comparator<Course> comparator = new Comparator<Course>() {
+        public int compare(Course course1, Course course2){
+          if(course2.courseId() > course1.courseId()){
+            return 1;
+          }
+          else{
+            return -1;
+          }
+        }
+      };
+
+      matchCourses.sort(comparator);
+      return matchCourses;
+      
+  }
+  
 
 }
