@@ -48,3 +48,12 @@ CREATE TABLE IF NOT EXISTS Teaches (
 
 INSERT INTO Teaches(teacher_id, course_id)
 VALUES (1,1);
+
+
+CREATE TABLE IF NOT EXISTS Attends (
+  student_id INTEGER,
+  course_id INTEGER,
+  PRIMARY KEY (student_id, course_id),
+  FOREIGN KEY (student_id) REFERENCES Student(student_id),
+  FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
