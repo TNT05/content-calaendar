@@ -1,0 +1,8 @@
+#### Register a student to a Course
+POST http://localhost:8080/api/jdbc/attends
+Content-Type: application/json
+
+{
+    "studentId": 1,
+    "courseId": 2
+}

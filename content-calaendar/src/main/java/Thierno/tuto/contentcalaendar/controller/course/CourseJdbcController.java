@@ -2,10 +2,8 @@ package Thierno.tuto.contentcalaendar.controller.course;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import Thierno.tuto.contentcalaendar.model.course.Course;
+import Thierno.tuto.contentcalaendar.model.course.CourseStatus;
 import Thierno.tuto.contentcalaendar.repository.course.CourseJdbcRepository;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -40,7 +38,7 @@ public class CourseJdbcController {
 
   @GetMapping("/{courseId}")
   public Course findById(@PathVariable Integer courseId){
-    return courseJdbcRepository.findCourseById(courseId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found !"));
+    return courseJdbcRepository.findCourseById(courseId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Course not found !"));
   }
 
   @PostMapping("")
@@ -50,7 +48,7 @@ public class CourseJdbcController {
   }
 
   @GetMapping("/findAllCourseByStatusByDecreasingId/{courseStatus}")
-  public List<Course> findAllCourseByStatusByDecreasingId(@PathVariable String courseStatus) {
+  public List<Course> findAllCourseByStatusByDecreasingId(@PathVariable CourseStatus courseStatus) {
       
     List<Course> matchCourses = courseJdbcRepository.findAllCourseByStatusByDecreasingId(courseStatus);
 

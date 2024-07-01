@@ -1,0 +1,8 @@
+### Add a Student
+POST http://localhost:8080/api/student/jdbc
+Content-Type: application/json
+
+{
+  "fullName": "Thierno Ibrahima",
+  "level": "KINDER_GARDEN"
+}

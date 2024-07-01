@@ -3,21 +3,20 @@ package Thierno.tuto.contentcalaendar.controller.course;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import Thierno.tuto.contentcalaendar.model.course.CourseSpringData;
 import Thierno.tuto.contentcalaendar.repository.course.CourseSpringDataRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @CrossOrigin
 @RequestMapping("api/course/springData")
-@Controller
+@RestController
 public class CourseSpringDataController {
   private CourseSpringDataRepository courseSpringDataRepository;
 

@@ -19,14 +19,15 @@ VALUES ('My Second Spring Data Blog Post','A post about spring data using JDBC',
 CREATE TABLE IF NOT EXISTS Course (
   course_id INTEGER AUTO_INCREMENT,
   maximum_capacity INTEGER,
+  remaining_capacity INTEGER,
   course_status VARCHAR(20) NOT NULL,
   start_time TIME,
   end_time TIME,
   PRIMARY KEY (course_id)
 );
 
-INSERT INTO Course(maximum_capacity, course_status, start_time, end_time)
-VALUES (25, 'AVAILABLE', '08:30:00', '10:00:00');
+INSERT INTO Course(maximum_capacity, remaining_capacity, course_status, start_time, end_time)
+VALUES (25, 5,'AVAILABLE', '08:30:00', '10:00:00');
 
 CREATE TABLE IF NOT EXISTS Teacher (
   teacher_id INTEGER AUTO_INCREMENT,
@@ -49,6 +50,12 @@ CREATE TABLE IF NOT EXISTS Teaches (
 INSERT INTO Teaches(teacher_id, course_id)
 VALUES (1,1);
 
+CREATE TABLE IF NOT EXISTS Student (
+  student_id INTEGER AUTO_INCREMENT,
+  student_fullname VARCHAR(20),
+  student_level VARCHAR(20),
+  PRIMARY KEY (student_id)
+);
 
 CREATE TABLE IF NOT EXISTS Attends (
   student_id INTEGER,
@@ -57,3 +64,4 @@ CREATE TABLE IF NOT EXISTS Attends (
   FOREIGN KEY (student_id) REFERENCES Student(student_id),
   FOREIGN KEY (course_id) REFERENCES Course(course_id)
 );
+

@@ -3,14 +3,10 @@ package Thierno.tuto.contentcalaendar.repository.course;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
@@ -37,11 +33,12 @@ public class CourseJdbcRepository {
 
   }*/
 
-  private static Course mapRow(ResultSet res, int rowNum) throws SQLException{
+  public static Course mapRow(ResultSet res, int rowNum) throws SQLException{
     return new Course(res.getInt("course_id"),
                       res.getTime("start_time").toLocalTime(),
                       res.getTime("end_time").toLocalTime(),
                       res.getInt("maximum_capacity"),
+                      res.getInt("remaining_capacity"),
                       CourseStatus.valueOf(res.getString("course_status"))
     );
 
@@ -58,17 +55,20 @@ public class CourseJdbcRepository {
   }
 
   public void addCourse(Course newCourse){
-    String query = "INSERT INTO Course (maximum_capacity, course_status, start_time, end_time) " +
-    "VALUES (" + newCourse.maximumCapacity() + ",'" + newCourse.status() + "','" + newCourse.startTime() + "','" + newCourse.endTime() + "')";
-    jdbcTemplate.update(query);
+    /*String query0 = "INSERT INTO Course (maximum_capacity, remaining_capacity, course_status, start_time, end_time) " +
+    "VALUES (" + newCourse.maximumCapacity() + ",'" + newCourse.status() + "','" + newCourse.startTime() + "','" + newCourse.endTime() + "')";*/
+
+    String query = "INSERT INTO Course (maximum_capacity, remaining_capacity, course_status, start_time, end_time) VALUES (?,?,?,?,?)";
+
+    jdbcTemplate.update(query, newCourse.maximumCapacity(),newCourse.remainingCapacity(), newCourse.status().name(), newCourse.startTime(), newCourse.endTime());
   }
 
-  public List<Course> findAllCourseByStatusByDecreasingId(String status){
+  public List<Course> findAllCourseByStatusByDecreasingId(CourseStatus status){
     String query = "SELECT * FROM Course WHERE course_status = ?";
     PreparedStatementSetter pss = new PreparedStatementSetter() {
       public void setValues(PreparedStatement ps) throws SQLException{
         // this is where we set the values of the ? of the prepared statement
-        ps.setString(1, status);
+        ps.setString(1, status.name());
       }
     };
 
