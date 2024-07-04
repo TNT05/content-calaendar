@@ -27,11 +27,13 @@ public class AttendsJdbcController {
   public void addAttendance(@RequestBody Attends attendence) {
 
     switch(attendsJdbcRepository.getCourseStatus(attendence.getCourseId())){
-      case AVAILABLE: attendsJdbcRepository.addAttendance(attendence.getStudentId(), attendence.getCourseId());
-      break;
-      case FULL: throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is full");
-      case CANCELED: throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is canceled");
-      case UNAVAILABLE: throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is unavailable");
+      case AVAILABLE -> {
+          if(attendsJdbcRepository.addAttendance(attendence.getStudentId(), attendence.getCourseId()) == 1){
+              attendsJdbcRepository.updateRemainingCapacityStatus(attendence.getCourseId());
+          }   }
+      case FULL -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is full");
+      case CANCELED -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is canceled");
+      case UNAVAILABLE -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course is unavailable");
     }
     
 

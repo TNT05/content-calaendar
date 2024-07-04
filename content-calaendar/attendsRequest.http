@@ -3,6 +3,6 @@ POST http://localhost:8080/api/jdbc/attends
 Content-Type: application/json
 
 {
-    "studentId": 1,
-    "courseId": 2
+    "studentId": 6,
+    "courseId": 1
 }

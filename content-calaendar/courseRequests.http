@@ -12,8 +12,8 @@ Content-Type: application/json
   "startTime": "13:30:00",
   "endTime": "18:00:00",
   "maximumCapacity": 80, 
-  "remainingCapacity": 0,
-  "status": "FULL"
+  "remainingCapacity": 1,
+  "status": "AVAILABLE"
 }
 
 ### Find all course by status in decreasing order

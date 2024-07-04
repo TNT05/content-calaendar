@@ -3,6 +3,6 @@ POST http://localhost:8080/api/student/jdbc
 Content-Type: application/json
 
 {
-  "fullName": "Thierno Ibrahima",
+  "fullName": "Fatoumata",
   "level": "KINDER_GARDEN"
 }

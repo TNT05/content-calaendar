@@ -25,13 +25,14 @@ public class AttendsJdbcRepository {
     return new Attends(rs.getInt("student_id"), rs.getInt("course_id"));
   }
 
-  public void addAttendance(int studentId, int courseId){
-    if(getCourseStatus(courseId) == CourseStatus.AVAILABLE){
+  public int addAttendance(int studentId, int courseId){
 
     String query = "INSERT INTO Attends (student_id, course_id) VALUES (?,?)";
     
-    jdbcTemplate.update(query, studentId, courseId);
-  }
+    int  row = jdbcTemplate.update(query, studentId, courseId);
+
+    return row;
+
 }
 
   public CourseStatus getCourseStatus(int courseId){
@@ -43,5 +44,21 @@ public class AttendsJdbcRepository {
     return course.isPresent() ? course.get().status() : CourseStatus.UNAVAILABLE;
 
   }
+
+    public void updateRemainingCapacityStatus(int courseId) {
+        String query = "Select * from Course C WHERE C.course_id=" + courseId;
+        Optional<Course> course = jdbcTemplate.query(query, CourseJdbcRepository::mapRow).stream().findFirst();
+        course.ifPresent(courseMatch -> {
+          String updateQuery;
+          if(courseMatch.remainingCapacity() == 1){
+            updateQuery = "UPDATE Course SET remaining_capacity = ?, course_status = ? WHERE course_id = ?";
+            jdbcTemplate.update(updateQuery, courseMatch.remainingCapacity() -1, CourseStatus.FULL.name(), courseMatch.courseId());
+          }
+          else if(courseMatch.remainingCapacity() > 1){
+            updateQuery = "UPDATE Course SET remaining_capacity = ? WHERE course_id = ?";
+            jdbcTemplate.update(updateQuery, courseMatch.remainingCapacity() -1, courseMatch.courseId());
+          }
+        });
+    }
 
 }
